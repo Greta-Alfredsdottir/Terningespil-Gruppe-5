@@ -1,10 +1,12 @@
-import { useState } from "react";
+
 import "./App.css";
+import { Game } from "./Pages/Game";
 
 function App() {
-  const [count, setCount] = useState(0);
 
-  return <></>;
+  return 
+    <Game />;
+
 }
 
 export default App;
