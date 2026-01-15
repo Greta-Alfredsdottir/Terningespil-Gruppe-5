@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './Game.module.scss';
 import { Player } from '../component/Game/Player/Player';
 import { PlayerTurn } from '../component/Game/PlayerTurn/PlayerTurn';
 import { ChoiceButtons } from '../component/Game/ChoiceButtons/ChoiceButtons';
@@ -33,8 +34,8 @@ export const Game: React.FC = () => {
     };
 
     return (
-        <div className="game">
-            <div className="players-container">
+        <div className={styles.game}>
+            <div className={styles.playersContainer}>
                 {players.map(player => (
                     <Player key={player.id} player={player} />
                 ))}

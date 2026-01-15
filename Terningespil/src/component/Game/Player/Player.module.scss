@@ -1,0 +1,33 @@
+.player {
+  padding: 1.5rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  margin: 1rem;
+  min-width: 200px;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  h2 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: #666;
+  }
+
+  &.active {
+    border-color: #4CAF50;
+    background: #f0f8f0;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    transform: scale(1.05);
+
+    h2 {
+      color: #4CAF50;
+      font-weight: bold;
+    }
+  }
+}
+
