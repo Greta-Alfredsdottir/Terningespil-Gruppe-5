@@ -8,11 +8,11 @@ function App() {
   const [Start, setStart] = useState(true);
 
   return (
-    <>
+    <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
       <Header />
       <StartSide Start={Start} setStart={setStart}></StartSide>
       <Footer />
-    </>
+    </div>
   );
 }
 
