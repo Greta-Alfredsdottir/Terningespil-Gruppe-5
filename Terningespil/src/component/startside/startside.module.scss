@@ -1,8 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .startSide {
-  background-color: aquamarine;
-  height: auto;
-  width: auto;
+  background-image: url("./public/the-walking-dead-1440-x-811.webp");
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: 60vh;
+  width: 100vw;
+  z-index: -1;
 }
 .minButton {
   background-color: lightsalmon;
+  padding: 15px;
 }
