@@ -3,13 +3,16 @@ import styles from './Game.module.scss';
 import { Player } from '../component/Game/Player/Player';
 import { PlayerTurn } from '../component/Game/PlayerTurn/PlayerTurn';
 import { Dice3D } from '../component/Game/Dice3D/Dice3D';
+import { ChoiceButtons } from '../component/Game/ChoiceButtons/ChoiceButtons';
 import type { Player as PlayerType } from "../component/types/game";
+import type { Choice } from "../component/types/game";
 
 export const Game: React.FC = () => {
     const [players, setPlayers] = useState<PlayerType[]>([
         { id: 1, name: 'Spiller 1', score: 0, isTurn: true },
         { id: 2, name: 'Spiller 2', score: 0, isTurn: false }
     ]);
+    const [choice, setChoice] = useState<Choice | null>(null);
 
     const currentPlayer = players.find(p => p.isTurn)!;
 
@@ -38,6 +41,9 @@ export const Game: React.FC = () => {
                     <Player key={player.id} player={player} />
                 ))}
             </div>
+
+            <ChoiceButtons setChoice={setChoice} />
+            {choice && <p>Valgt: {choice === "higher" ? "Højere" : "Lavere"}</p>}
 
             <PlayerTurn
                 currentPlayer={currentPlayer}
