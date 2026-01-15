@@ -9,17 +9,20 @@ interface ResultProps {
 }
 
 export const Result = ({ choice, diceValue, onScoreUpdate }: ResultProps) => {
-    if (!choice || diceValue === null) return null;
-
-    const win =
-        (choice === "higher" && diceValue > 3) ||
-        (choice === "lower" && diceValue <= 3);
+    const win = choice && diceValue !== null
+        ? (choice === "higher" && diceValue > 3) ||
+        (choice === "lower" && diceValue <= 3)
+        : null;
 
     // useEffect må ikke være betinget - den skal altid køre
     useEffect(() => {
-        const points = win ? 10 : -5;
-        onScoreUpdate?.(points);
+        if (win !== null) {
+            const points = win ? 10 : -5;
+            onScoreUpdate?.(points);
+        }
     }, [diceValue, choice, win, onScoreUpdate]);
+
+    if (!choice || diceValue === null) return null;
 
     return (
         <div className={styles.result}>

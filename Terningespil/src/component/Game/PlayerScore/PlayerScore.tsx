@@ -2,6 +2,7 @@ import styles from "./PlayerScore.module.scss";
 import type { Player as PlayerType, Choice } from "../../types/game";
 import { useEffect } from "react";
 
+
 interface PlayerScoreProps {
     player: PlayerType;
     choice: Choice | null;
@@ -10,8 +11,9 @@ interface PlayerScoreProps {
 }
 
 export const PlayerScore = ({ player, choice, diceValue, onScoreUpdate }: PlayerScoreProps) => {
+    if (!choice || diceValue === null) return null;
+
     const calculateWin = () => {
-        if (!choice || diceValue === null) return null;
         return (choice === "higher" && diceValue > 3) ||
             (choice === "lower" && diceValue <= 3);
     };
@@ -20,13 +22,9 @@ export const PlayerScore = ({ player, choice, diceValue, onScoreUpdate }: Player
 
     // useEffect må ikke være betinget
     useEffect(() => {
-        if (win !== null) {
-            const points = win ? 10 : -5;
-            onScoreUpdate(player.score + points);
-        }
-    }, [diceValue, choice, player.score, onScoreUpdate]);
-
-    if (!choice || diceValue === null) return null;
+        const points = win ? 10 : -5;
+        onScoreUpdate(player.score + points);
+    }, [diceValue, choice, win, player.score, onScoreUpdate]);
 
     return (
         <div className={styles.playerScore}>
