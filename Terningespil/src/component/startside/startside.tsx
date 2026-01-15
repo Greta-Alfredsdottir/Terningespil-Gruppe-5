@@ -10,9 +10,6 @@ export function StartSide({ Start, setStart }: modelProp) {
     Start === true && (
       <section className={style.container}>
         <section className={style.startSide}></section>
-        <button className={style.minButton} onClick={() => setStart(true)}>
-          Start spil
-        </button>
       </section>
     )
   );
