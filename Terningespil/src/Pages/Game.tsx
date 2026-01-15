@@ -1,27 +1,47 @@
-import { useState } from "react";
-import { Dice } from "../component/Game/Dice/Dice";
-import { ChoiceButtons } from "../component/Game/ChoiceButtons/ChoiceButtons";
-import { Result } from "../component/Game/Result/Result";
-import { Player } from "../component/Game/Player/Player";
-import type { Choice, Player as PlayerType } from "../component/types/game";
+import React, { useState } from 'react';
+import { Player } from '../component/Game/Player/Player';
+import { PlayerTurn } from '../component/Game/PlayerTurn/PlayerTurn';
+import type { Player as PlayerType } from "../component/types/game";
 
-export const Game = () => {
-    const [choice, setChoice] = useState<Choice | null>(null);
-    const [diceValue, setDiceValue] = useState<number | null>(null);
-            // det er ikke en fejl det er bare en advarsel siden der ikke er blevet lavet skifte tur og score logik endnu
+export const Game: React.FC = () => {
     const [players, setPlayers] = useState<PlayerType[]>([
-        { name: "Spiller 1", score: 0, isTurn: true },
-        { name: "Spiller 2", score: 0, isTurn: false },
+        { id: 1, name: 'Spiller 1', score: 0, isTurn: true },
+        { id: 2, name: 'Spiller 2', score: 0, isTurn: false }
     ]);
 
+    const currentPlayer = players.find(p => p.isTurn)!;
+
+    const handleScoreUpdate = (playerId: number, points: number) => {
+        setPlayers(players.map(p =>
+            p.id === playerId
+                ? { ...p, score: p.score + points }
+                : p
+        ));
+    };
+
+    const handleEndTurn = () => {
+        const currentIndex = players.findIndex(p => p.isTurn);
+        const nextIndex = (currentIndex + 1) % players.length;
+
+        setPlayers(players.map((p, index) => ({
+            ...p,
+            isTurn: index === nextIndex
+        })));
+    };
+
     return (
-        <section>
-            {players.map((p, i) => (
-                <Player key={i} player={p} />
-            ))}
-            <ChoiceButtons setChoice={setChoice} />
-            <Dice setDiceValue={setDiceValue} />
-            <Result choice={choice} diceValue={diceValue} />
-        </section>
+        <div className="game">
+            <div className="players-container">
+                {players.map(player => (
+                    <Player key={player.id} player={player} />
+                ))}
+            </div>
+
+            <PlayerTurn
+                currentPlayer={currentPlayer}
+                onScoreUpdate={handleScoreUpdate}
+                onEndTurn={handleEndTurn}
+            />
+        </div>
     );
 };
