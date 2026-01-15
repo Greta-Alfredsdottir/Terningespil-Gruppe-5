@@ -1,4 +1,5 @@
-import './Dice.module.scss'
+import styles from './Dice.module.scss'
+
 interface DiceProps {
     setDiceValue: (value: number) => void;
 }
@@ -10,10 +11,8 @@ export const Dice = ({ setDiceValue }: DiceProps) => {
         setDiceValue(value);
     }
 
-
-
     return (
-        <div className='dice'>
+        <div className={styles.dice}>
             <button onClick={rollDice}>Kast Terning</button>
         </div>
     )
