@@ -1,4 +1,4 @@
-import "./player.scss";
+import './Player.module.scss';
 import type { Player as PlayerType } from "../../types/game";
 
 interface PlayerProps {
