@@ -1,3 +1,30 @@
 .mainHeader {
-  background-color: lightskyblue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 4vh 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+.mainHeader h1 {
+  margin: 0;
+  color: #000000;
+  font-weight: bold;
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+}
+.terningOverlay {
+  background-image: url("./public/terninger.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 20vh;
+  width: 30vw;
+  margin: 0 auto;
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 }

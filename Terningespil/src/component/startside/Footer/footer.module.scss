@@ -1,3 +1,21 @@
-.mainFooter {
-  background-color: lightseagreen;
+.minButton {
+  background-color: lightsalmon;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: #ff8c69;
+    transform: translateX(-50%) scale(1.05);
+  }
 }

@@ -1,8 +1,23 @@
-.startSide {
-  background-color: aquamarine;
-  height: auto;
-  width: auto;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 100vh;
 }
-.minButton {
-  background-color: lightsalmon;
+.startSide {
+  background-image: url("./public/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+  position: relative;
 }

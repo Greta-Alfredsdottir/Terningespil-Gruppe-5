@@ -8,8 +8,8 @@ interface modelProp {
 export function StartSide({ Start, setStart }: modelProp) {
   return (
     Start === true && (
-      <section className={style.minButton}>
-        <button onClick={() => setStart(true)}>Start spil</button>
+      <section className={style.container}>
+        <section className={style.startSide}></section>
       </section>
     )
   );
