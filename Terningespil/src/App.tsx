@@ -12,6 +12,7 @@ function App() {
       <Header />
       <StartSide Start={Start} setStart={setStart}></StartSide>
       <Footer />
+
     </>
   );
 }
