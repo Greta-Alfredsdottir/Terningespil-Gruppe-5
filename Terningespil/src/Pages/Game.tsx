@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Game.module.scss';
 import { Player } from '../component/Game/Player/Player';
 import { PlayerTurn } from '../component/Game/PlayerTurn/PlayerTurn';
+import { Dice3D } from '../component/Game/Dice3D/Dice3D';
 import type { Player as PlayerType } from "../component/types/game";
 
 export const Game: React.FC = () => {
@@ -43,6 +44,7 @@ export const Game: React.FC = () => {
                 onScoreUpdate={handleScoreUpdate}
                 onEndTurn={handleEndTurn}
             />
+            <Dice3D />
         </div>
     );
 };
