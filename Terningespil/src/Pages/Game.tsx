@@ -13,7 +13,7 @@ export const Game: React.FC = () => {
     const currentPlayer = players.find(p => p.isTurn)!;
 
     const handleScoreUpdate = (playerId: number, points: number) => {
-        setPlayers(players.map(p =>
+            setPlayers((prevPlayers: PlayerType[]) => prevPlayers.map(p =>
             p.id === playerId
                 ? { ...p, score: p.score + points }
                 : p
@@ -21,13 +21,15 @@ export const Game: React.FC = () => {
     };
 
     const handleEndTurn = () => {
-        const currentIndex = players.findIndex(p => p.isTurn);
-        const nextIndex = (currentIndex + 1) % players.length;
+        setPlayers((prevPlayers: PlayerType[]) => {
+            const currentIndex = prevPlayers.findIndex(p => p.isTurn);
+            const nextIndex = (currentIndex + 1) % prevPlayers.length;
 
-        setPlayers(players.map((p, index) => ({
-            ...p,
-            isTurn: index === nextIndex
-        })));
+            return prevPlayers.map((p, index) => ({
+                ...p,
+                isTurn: index === nextIndex
+            }));
+        });
     };
 
     return (
