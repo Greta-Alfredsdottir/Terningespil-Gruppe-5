@@ -1,10 +1,44 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StartSide } from "./component/startside/startside";
 import { Header } from "./component/startside/header/header";
 import { Footer } from "./component/startside/Footer/footer";
 function App() {
   const [Start, setStart] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Create audio element once
+    audioRef.current = new Audio('/sound/background-music.mp3');
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.1; 
+    
+    // Try to play, but handle autoplay policy
+    const playPromise = audioRef.current.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        const playOnInteraction = () => {
+          if (audioRef.current) {
+            audioRef.current.play().catch(() => {});
+            document.removeEventListener('click', playOnInteraction);
+            document.removeEventListener('touchstart', playOnInteraction);
+          }
+        };
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('touchstart', playOnInteraction);
+      });
+    }
+
+    // Cleanup
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
 
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
