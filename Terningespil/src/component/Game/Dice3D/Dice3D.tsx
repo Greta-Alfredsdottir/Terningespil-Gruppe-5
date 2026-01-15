@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './Dice3D.module.scss'
+import styles from './Dice3D.module.scss'
 
 export const Dice3D = () => {
     const [value, setValue] = useState(1);
@@ -19,16 +19,16 @@ export const Dice3D = () => {
     };
 
     return (
-        <div className="dice-wrapper">
+        <div className={styles.diceWrapper}>
             <div
-                className={`cube face-${value} ${rolling ? "rolling" : ""}`}
+                className={`${styles.cube} ${styles[`face${value}`]} ${rolling ? styles.rolling : ""}`}
             >
-                <div className="face front">1</div>
-                <div className="face back">6</div>
-                <div className="face right">2</div>
-                <div className="face left">5</div>
-                <div className="face top">3</div>
-                <div className="face bottom">4</div>
+                <div className={`${styles.face} ${styles.faceFront}`}>1</div>
+                <div className={`${styles.face} ${styles.faceBack}`}>6</div>
+                <div className={`${styles.face} ${styles.faceRight}`}>2</div>
+                <div className={`${styles.face} ${styles.faceLeft}`}>5</div>
+                <div className={`${styles.face} ${styles.faceTop}`}>3</div>
+                <div className={`${styles.face} ${styles.faceBottom}`}>4</div>
             </div>
 
             <button onClick={rollDice}>Kast terning</button>
