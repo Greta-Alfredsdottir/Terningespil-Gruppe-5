@@ -1,4 +1,4 @@
-.dice-wrapper {
+.diceWrapper {
   perspective: 800px;
   display: flex;
   flex-direction: column;
@@ -29,20 +29,20 @@
   font-weight: bold;
 }
 
-.front  { transform: rotateY(0deg) translateZ(50px); }
-.back   { transform: rotateY(180deg) translateZ(50px); }
-.right  { transform: rotateY(90deg) translateZ(50px); }
-.left   { transform: rotateY(-90deg) translateZ(50px); }
-.top    { transform: rotateX(90deg) translateZ(50px); }
-.bottom { transform: rotateX(-90deg) translateZ(50px); }
+.faceFront  { transform: rotateY(0deg) translateZ(50px); }
+.faceBack   { transform: rotateY(180deg) translateZ(50px); }
+.faceRight  { transform: rotateY(90deg) translateZ(50px); }
+.faceLeft   { transform: rotateY(-90deg) translateZ(50px); }
+.faceTop    { transform: rotateX(90deg) translateZ(50px); }
+.faceBottom { transform: rotateX(-90deg) translateZ(50px); }
 
 
-.face-1 { transform: rotateX(0deg) rotateY(0deg); }
-.face-2 { transform: rotateY(-90deg); }
-.face-3 { transform: rotateX(-90deg); }
-.face-4 { transform: rotateX(90deg); }
-.face-5 { transform: rotateY(90deg); }
-.face-6 { transform: rotateY(180deg); }
+.face1 { transform: rotateX(0deg) rotateY(0deg); }
+.face2 { transform: rotateY(-90deg); }
+.face3 { transform: rotateX(-90deg); }
+.face4 { transform: rotateX(90deg); }
+.face5 { transform: rotateY(90deg); }
+.face6 { transform: rotateY(180deg); }
 
 
 .rolling {
