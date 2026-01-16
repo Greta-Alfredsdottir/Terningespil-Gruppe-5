@@ -22,7 +22,7 @@ export const PlayerTurn: React.FC<PlayerTurnProps> = ({
 
         setTimeout(() => {
             setDiceValue(roll);
-            setTurnScore(turnScore + roll);
+            setTurnScore(prevTurnScore => prevTurnScore + roll);
             setIsRolling(false);
         }, 500);
     };
