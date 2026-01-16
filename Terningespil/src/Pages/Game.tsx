@@ -3,6 +3,7 @@ import { Player } from '../component/Game/Player/Player';
 import { PlayerTurn } from '../component/Game/PlayerTurn/PlayerTurn';
 import { Dice3D } from '../component/Game/Dice3D/Dice3D';
 import type { Player as PlayerType } from "../component/types/game";
+import { Result } from '../component/Game/Result/Result';
 
 export const Game: React.FC = () => {
     const [players, setPlayers] = useState<PlayerType[]>([
@@ -34,6 +35,11 @@ export const Game: React.FC = () => {
 
     return (
         <div className="game">
+
+            <div className='winLoseOverlay'>
+                {/* Win/Lose overlay content can go here */}
+                <Result choice={null} diceValue={null} />
+            </div>
             <div className="players-container">
                 {players.map(player => (
                     <Player key={player.id} player={player} />
