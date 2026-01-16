@@ -10,6 +10,7 @@ export function StartSide({ Start }: modelProp) {
   return (
     <section className={style.container}>
       <section className={style.startSide}>
+        {/* Ternary operator to show game or hide game */}
         {Start && (
           <div className={style.gameWrapper}>
             <Game />
