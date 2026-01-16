@@ -10,7 +10,7 @@
     font-weight: bold;
     border: 2px solid #333;
     border-radius: 8px;
-    background: white;
+    background: red;
     cursor: pointer;
     transition: all 0.3s ease;
 
@@ -25,4 +25,6 @@
     }
   }
 }
-
+.firstChoice {
+  background-color: red;
+}

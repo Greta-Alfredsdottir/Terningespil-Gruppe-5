@@ -18,7 +18,7 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  background: white;
+  background: red;
   border: 2px solid #333;
 
   display: flex;
@@ -29,21 +29,43 @@
   font-weight: bold;
 }
 
-.faceFront  { transform: rotateY(0deg) translateZ(50px); }
-.faceBack   { transform: rotateY(180deg) translateZ(50px); }
-.faceRight  { transform: rotateY(90deg) translateZ(50px); }
-.faceLeft   { transform: rotateY(-90deg) translateZ(50px); }
-.faceTop    { transform: rotateX(90deg) translateZ(50px); }
-.faceBottom { transform: rotateX(-90deg) translateZ(50px); }
+.faceFront {
+  transform: rotateY(0deg) translateZ(50px);
+}
+.faceBack {
+  transform: rotateY(180deg) translateZ(50px);
+}
+.faceRight {
+  transform: rotateY(90deg) translateZ(50px);
+}
+.faceLeft {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+.faceTop {
+  transform: rotateX(90deg) translateZ(50px);
+}
+.faceBottom {
+  transform: rotateX(-90deg) translateZ(50px);
+}
 
-
-.face1 { transform: rotateX(0deg) rotateY(0deg); }
-.face2 { transform: rotateY(-90deg); }
-.face3 { transform: rotateX(-90deg); }
-.face4 { transform: rotateX(90deg); }
-.face5 { transform: rotateY(90deg); }
-.face6 { transform: rotateY(180deg); }
-
+.face1 {
+  transform: rotateX(0deg) rotateY(0deg);
+}
+.face2 {
+  transform: rotateY(-90deg);
+}
+.face3 {
+  transform: rotateX(-90deg);
+}
+.face4 {
+  transform: rotateX(90deg);
+}
+.face5 {
+  transform: rotateY(90deg);
+}
+.face6 {
+  transform: rotateY(180deg);
+}
 
 .rolling {
   animation: spin 1s ease-in-out;
@@ -56,4 +78,15 @@
   100% {
     transform: rotateX(720deg) rotateY(720deg);
   }
+}
+.kastTerning {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background: red;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: black;
 }
