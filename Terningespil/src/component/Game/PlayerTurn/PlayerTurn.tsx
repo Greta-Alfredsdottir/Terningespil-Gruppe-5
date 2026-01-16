@@ -1,58 +1,82 @@
-import React, { useState } from 'react';
-import type { Player } from "../../types/game";
+import React, { useState, useEffect, useRef } from 'react';
+import type { Player, Choice } from "../../types/game";
 
 interface PlayerTurnProps {
     currentPlayer: Player;
+    diceValue: number;
+    choice: Choice | null;
     onScoreUpdate: (playerId: number, points: number) => void;
     onEndTurn: () => void;
 }
 
 export const PlayerTurn: React.FC<PlayerTurnProps> = ({
     currentPlayer,
+    diceValue,
+    choice,
     onScoreUpdate,
     onEndTurn
 }) => {
-    const [diceValue, setDiceValue] = useState<number>(0);
-    const [isRolling, setIsRolling] = useState(false);
     const [turnScore, setTurnScore] = useState(0);
+    const [hasRolled, setHasRolled] = useState(false);
+    const previousDiceValueRef = useRef<number>(diceValue);
+    const isInitialMount = useRef<boolean>(true);
 
-    const rollDice = () => {
-        setIsRolling(true);
-        const roll = Math.floor(Math.random() * 6) + 1;
+    useEffect(() => {
+        setTurnScore(0);
+        setHasRolled(false);
+        previousDiceValueRef.current = diceValue;
+        isInitialMount.current = true;
+    }, [currentPlayer.id]);
 
-        setTimeout(() => {
-            setDiceValue(roll);
-            setTurnScore(prevTurnScore => prevTurnScore + roll);
-            setIsRolling(false);
-        }, 500);
-    };
+    useEffect(() => {   
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            previousDiceValueRef.current = diceValue;
+            return;
+        }
+
+        if (diceValue !== previousDiceValueRef.current && choice !== null) {
+            setHasRolled(true);
+            // Calculate win/loss based on choice
+            const win = (choice === "higher" && diceValue > 3) ||
+                       (choice === "lower" && diceValue <= 3);
+            const points = win ? 10 : -5;
+            setTurnScore(points);
+            previousDiceValueRef.current = diceValue;
+        }
+    }, [diceValue, choice]);
 
     const endTurn = () => {
-        // Opdater spillerens score
         onScoreUpdate(currentPlayer.id, turnScore);
 
-        // Reset turn state
-        setDiceValue(0);
         setTurnScore(0);
+        setHasRolled(false);
+        previousDiceValueRef.current = diceValue;
+        isInitialMount.current = true;
 
-        // Skift til næste spiller
         onEndTurn();
     };
+
+    const win = choice !== null && hasRolled
+        ? (choice === "higher" && diceValue > 3) ||
+          (choice === "lower" && diceValue <= 3)
+        : null;
 
     return (
         <div className="player-turn">
             <h3>{currentPlayer.name}'s Tur</h3>
 
             <div className="dice-display">
-                {diceValue > 0 && <p>Terning: {diceValue}</p>}
+                {hasRolled && (
+                    <>
+                        <p>Terning: {diceValue}</p>
+                        <p>{win ? "✓ Du vandt!" : "✗ Du tabte!"}</p>
+                    </>
+                )}
                 <p>Denne runde: {turnScore} point</p>
             </div>
 
-            <button onClick={rollDice} disabled={isRolling}>
-                {isRolling ? 'Kaster...' : 'Kast Terning'}
-            </button>
-
-            <button onClick={endTurn} disabled={turnScore === 0}>
+            <button onClick={endTurn} disabled={!hasRolled || turnScore === 0}>
                 Afslut Tur
             </button>
         </div>
