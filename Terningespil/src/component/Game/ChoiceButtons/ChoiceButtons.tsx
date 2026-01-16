@@ -3,14 +3,14 @@ import type { Choice } from "../../types/game";
 
 interface ChoiceButtonsProps {
     setChoice: (choice: Choice) => void;
+    disabled?: boolean;
 }
 
-
-export const ChoiceButtons = ({ setChoice }: ChoiceButtonsProps) => {
+export const ChoiceButtons = ({ setChoice, disabled = false }: ChoiceButtonsProps) => {
     return (
         <div className={styles.choices}>
-            <button onClick={() => setChoice("higher")}>Højere</button>
-            <button onClick={() => setChoice("lower")}>Lavere</button>
+            <button onClick={() => setChoice("higher")} disabled={disabled}>Højere</button>
+            <button onClick={() => setChoice("lower")} disabled={disabled}>Lavere</button>
         </div>
     )
 }
