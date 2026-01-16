@@ -8,7 +8,6 @@ interface FooterProps {
 export function Footer({ setStart, Start }: FooterProps) {
   return (
     <>
-    {/* Ternary operator to show start or stop button */}
     {Start === false && (
         <button className={style.minButton} onClick={() => setStart(true)}>
         Start spil

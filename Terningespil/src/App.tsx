@@ -7,14 +7,13 @@ function App() {
   const [Start, setStart] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Audio effect for background music
   useEffect(() => {
     // Create audio element once
     audioRef.current = new Audio('/sound/background-music.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.1; 
     
-    //play audio when component mounts
+    // Try to play, but handle autoplay policy
     const playPromise = audioRef.current.play();
     
     if (playPromise !== undefined) {
@@ -31,7 +30,7 @@ function App() {
       });
     }
 
-    // Cleanup when component unmounts
+    // Cleanup
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();

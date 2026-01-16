@@ -11,7 +11,7 @@
   width: 100px;
   height: 100px;
   transform-style: preserve-3d;
-  transition: transform var(--animation-duration, 1s) ease-in-out;
+  transition: transform 1s ease-in-out;
 }
 
 .face {
@@ -68,7 +68,7 @@
 }
 
 .rolling {
-  animation: spin var(--animation-duration, 1s) ease-in-out;
+  animation: spin 1s ease-in-out;
 }
 
 @keyframes spin {
