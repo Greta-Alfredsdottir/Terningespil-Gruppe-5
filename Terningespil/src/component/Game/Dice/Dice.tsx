@@ -1,3 +1,5 @@
+//Not used, replaced with Dice3D
+
 import styles from './Dice.module.scss'
 
 interface DiceProps {
