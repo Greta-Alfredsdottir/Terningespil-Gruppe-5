@@ -35,7 +35,9 @@ export const PlayerTurn: React.FC<PlayerTurnProps> = ({
             return;
         }
 
-        if (diceValue !== previousDiceValueRef.current && choice !== null) {
+        // Check if dice was rolled (value changed from previous and choice was made)
+        // Also check that we haven't already processed this roll
+        if (diceValue !== previousDiceValueRef.current && choice !== null && !hasRolled) {
             setHasRolled(true);
             // Calculate win/loss based on choice
             const win = (choice === "higher" && diceValue > 3) ||
@@ -44,10 +46,12 @@ export const PlayerTurn: React.FC<PlayerTurnProps> = ({
             setTurnScore(points);
             previousDiceValueRef.current = diceValue;
         }
-    }, [diceValue, choice]);
+    }, [diceValue, choice, hasRolled]);
 
     const endTurn = () => {
-        onScoreUpdate(currentPlayer.id, turnScore);
+        if (hasRolled) {
+            onScoreUpdate(currentPlayer.id, turnScore);
+        }
 
         setTurnScore(0);
         setHasRolled(false);
@@ -76,7 +80,7 @@ export const PlayerTurn: React.FC<PlayerTurnProps> = ({
                 <p>Denne runde: {turnScore} point</p>
             </div>
 
-            <button onClick={endTurn} disabled={!hasRolled || turnScore === 0}>
+            <button onClick={endTurn} disabled={!hasRolled}>
                 Afslut Tur
             </button>
         </div>

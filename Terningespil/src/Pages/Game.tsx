@@ -19,7 +19,6 @@ export const Game: React.FC = () => {
 
     const currentPlayer = players.find(p => p.isTurn)!;
 
-    // Reset hasRolled when player changes
     useEffect(() => {
         setHasRolled(false);
         setChoice(null);
@@ -57,7 +56,6 @@ export const Game: React.FC = () => {
                 isTurn: index === nextIndex
             }));
         });
-        // Reset dice, choice, and hasRolled when turn ends
         setDiceValue(1);
         setChoice(null);
         setHasRolled(false);
